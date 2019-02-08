@@ -50,10 +50,8 @@ const ideas = [
 
 const validateIdea = idea => {
   const schema = {
-    title: Joi.string().required(),
-    body: Joi.string()
-      .max(150)
-      .required()
+    title: Joi.string(),
+    body: Joi.string().max(150)
   };
 
   return Joi.validate(idea, schema);
