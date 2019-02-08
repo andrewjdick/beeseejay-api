@@ -9,7 +9,8 @@ app.use(express.json());
 
 app.use(cors());
 
-const BASE_URL = "/api/ideas";
+const BASE_URL = "/api";
+const IDEAS_ENDPOINT_URL = "/ideas";
 const SERVER_PORT = process.env.PORT || 4000;
 const ERROR_MESSAGES = {
   NOTFOUND: "The idea with the given ID was not found"
@@ -60,7 +61,7 @@ const validateIdea = idea => {
 const findIdea = id => ideas.find(idea => idea.id === id);
 
 // GET ideas
-app.get(`${BASE_URL}`, (req, res) => {
+app.get(`${BASE_URL}${IDEAS_ENDPOINT_URL}`, (req, res) => {
   res.send(ideas);
 });
 
@@ -75,7 +76,7 @@ app.get(`${BASE_URL}/:id`, (req, res) => {
 });
 
 // POST ideas
-app.post(`${BASE_URL}`, (req, res) => {
+app.post(`${BASE_URL}${IDEAS_ENDPOINT_URL}`, (req, res) => {
   const idea = {
     id: uuidv1(),
     date_created: new Date().getTime()
@@ -87,7 +88,7 @@ app.post(`${BASE_URL}`, (req, res) => {
 });
 
 // PUT idea/:id
-app.put(`${BASE_URL}/:id`, (req, res) => {
+app.put(`${BASE_URL}${IDEAS_ENDPOINT_URL}/:id`, (req, res) => {
   const { id } = req.params;
   const idea = findIdea(id);
   const ideaIndex = ideas.indexOf(idea);
@@ -101,15 +102,14 @@ app.put(`${BASE_URL}/:id`, (req, res) => {
 
   ideas[ideaIndex] = {
     ...idea,
-    title,
-    body
+    ...req.body
   };
 
   res.send(idea);
 });
 
 // DELETE idea/:id
-app.delete(`${BASE_URL}/:id`, (req, res) => {
+app.delete(`${BASE_URL}${IDEAS_ENDPOINT_URL}/:id`, (req, res) => {
   const { id } = req.params;
   const idea = findIdea(id);
 
