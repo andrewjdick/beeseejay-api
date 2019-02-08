@@ -1,10 +1,13 @@
 const Joi = require("joi");
 const uuidv1 = require("uuid/v1");
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
 // Enables the parsing of JSON objects in Express
 app.use(express.json());
+
+app.use(cors());
 
 const BASE_URL = "/api/ideas";
 const SERVER_PORT = process.env.PORT || 4000;
