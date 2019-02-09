@@ -20,31 +20,31 @@ const ERROR_MESSAGES = {
 const ideas = [
   {
     id: "61035bc0-2b32-11e9-9c46-0b23542eb7e3",
-    date_created: 1549582300752,
+    created_date: 1549582300752,
     title: "First card title",
     body: "First card body"
   },
   {
     id: "61035bc1-2b32-11e9-9c46-0b23542eb7e3",
-    date_created: 1549582302423,
+    created_date: 1549582302423,
     title: "Second card title",
     body: "Second card body"
   },
   {
     id: "61035bc2-2b32-11e9-9c46-0b23542eb7e3",
-    date_created: 1549582303013,
+    created_date: 1549582303013,
     title: "Third card title",
     body: "Third card body"
   },
   {
     id: "61035bc3-2b32-11e9-9c46-0b23542eb7e3",
-    date_created: 1549582303491,
+    created_date: 1549582303491,
     title: "Fourth card title",
     body: "Fourth card body"
   },
   {
     id: "61035bc4-2b32-11e9-9c46-0b23542eb7e3",
-    date_created: 1549582409879,
+    created_date: 1549582409879,
     title: "Fifth card title",
     body: "Fifth card body"
   }
@@ -82,7 +82,7 @@ app.get(`${BASE_URL}/:id`, (req, res) => {
 app.post(`${BASE_URL}${IDEAS_ENDPOINT_URL}`, (req, res) => {
   const idea = {
     id: uuidv1(),
-    date_created: new Date().getTime()
+    created_date: new Date().getTime()
   };
 
   ideas.push(idea);
