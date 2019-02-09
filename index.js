@@ -7,6 +7,7 @@ const app = express();
 // Enables the parsing of JSON objects in Express
 app.use(express.json());
 
+// Allow the use of CORS for cross-domain API access
 app.use(cors());
 
 const BASE_URL = "/api";
@@ -51,8 +52,10 @@ const ideas = [
 
 const validateIdea = idea => {
   const schema = {
-    title: Joi.string(),
-    body: Joi.string().max(150)
+    title: Joi.string().allow(""),
+    body: Joi.string()
+      .allow("")
+      .max(150)
   };
 
   return Joi.validate(idea, schema);
