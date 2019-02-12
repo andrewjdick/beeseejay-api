@@ -87,7 +87,7 @@ app.post(`${BASE_URL}${IDEAS_ENDPOINT_URL}`, (req, res) => {
 
   ideas.push(idea);
 
-  res.send(idea);
+  res.status(201).send(idea);
 });
 
 // PUT idea/:id
